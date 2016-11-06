@@ -29,7 +29,6 @@
     <div class="well">
         <p>Laatste bestelling verstuurd naar Arend: <br>
             {{ $mostRecentOrder->updated_at->diffForHumans() }} </p>
-        <p>Je volgende bestelling is voor aanstaande: <br>
-            {{ Helper::nextDeliveryDay($mostRecentOrder->updated_at) }} </p>
+        <p>Je volgende bestelling is voor aanstaande {{ Helper::nextDeliveryDay($mostRecentOrder->updated_at) }} </p>
     </div>
 @endif
