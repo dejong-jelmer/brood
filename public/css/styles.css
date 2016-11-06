@@ -1,0 +1,51 @@
+.navbar {
+  background-color: #D4EDF4;
+  border-color: #D4EDF4;
+
+}
+
+.well {
+  background-color: #E2F2D5;
+}
+
+
+.transparent {
+	opacity: 0.4;
+}
+
+.hidden {
+	display:none;
+}
+
+.center {
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+// Menu displayed on homepage (after login)
+.nav-list { border-bottom: 1px solid #eee; }
+.nav-list > li { 
+  padding: 20px 8px 15px;
+  /*border-left: 1px solid #eee; */
+}
+
+.nav-list > li:first-child {
+	border-left: none;
+}
+
+.nav-list > li > a:hover { text-decoration: none; }
+.nav-list > li > a > span {
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.vertical-align {
+	margin-top: 50px;
+}
+
+.pointer {
+  cursor: pointer;
+}
