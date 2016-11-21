@@ -13,7 +13,8 @@ class ResetController extends Controller
 {
 	public function getReset()
 	{
-		return view('user.profile.index');
+		$user = Auth::user();
+		return view('user.profile.index')->with('user', $user);
 	}
 
 	public function postResetUsername(Request $request)

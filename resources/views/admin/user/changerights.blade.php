@@ -24,7 +24,7 @@
                 
                 <div class="form-group">
                 <label for="user">Geselecteerde gebruiker:</label>
-                    <input type="text" class="secondValue form-control" name="user" value="">
+                    <input type="text" class="secondValue form-control" name="user" value="" disabled="true" style="cursor:auto">
                 </div>
                 <form action="{{ route('admin.user.adminrights') }}" method="post">
                         <input type="hidden" class="firstValue" name="id" value="">

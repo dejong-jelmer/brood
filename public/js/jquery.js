@@ -26,6 +26,7 @@ jQuery(document).ready(function() {
       	}
     });
 
+	//toggle inputfiels on profile page
     $("#toggleName").click(function() {
     	$("#name").slideToggle("slow");
     });
@@ -36,6 +37,10 @@ jQuery(document).ready(function() {
 
     $("#togglePassword").click(function() {
     	$("#password").slideToggle("slow");
+    });
+
+    $("#toggleCyclist").click(function() {
+    	$("#cyclist").slideToggle("slow");
     });
 	
 	// Unhides inputfield.
@@ -164,5 +169,24 @@ jQuery(document).ready(function() {
 			$(".is-not-deactivated").removeClass("hidden");
 	 	}
 	});
+
+	$("#fist_cyclist").click(function() {
+		if($(this).is(':checked')) {
+			$("#output_fist_cyclist").html('<b>Opgeven</b>');
+		} else {
+			$("#output_fist_cyclist").html('<b>Afmelden</b>');
+		}
+	});
+
+	$("#second_cyclist").click(function() {
+		if($(this).is(':checked')) {
+			$("#output_second_cyclist").html('<b>Opgeven</b>');
+		} else {
+			$("#output_second_cyclist").html('<b>Afmelden</b>');
+		}
+	});
+	
+
+
 });
 

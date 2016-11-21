@@ -28,7 +28,7 @@
             <a href="{{ route('auth.signup') }}"><span class="glyphicon glyphicon-user"></span> Nog geen account? Maak een nieuw account aan.</a>
         </div>
         <div class="form-group">   
-            <a href="{{ route('auth.password.email') }}">Wachtwoord vergeten?</a>
+            <a href="{{ route('auth.password.email') }}"><span class="glyphicon glyphicon-question-sign"></span> Wachtwoord vergeten?</a>
         </div>
         <input type="hidden" name="_token" value="{{ Session::token() }}">
     </form>

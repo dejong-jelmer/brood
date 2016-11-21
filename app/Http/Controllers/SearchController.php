@@ -25,12 +25,10 @@ class SearchController extends Controller
         ->orWhere('email', 'LIKE', "%{$query}%")->with('breads')
         ->get();
 
-        $breads = Bread::where('bread', 'LIKE', "%{$query}%")->get();
-        
+               
 
         return view('admin.user.changeorder')->with([
             'users'=> $users,
-            'breads' => $breads,
             ]);
     }
     

@@ -11,6 +11,7 @@ use Brood\Models\User;
 use Brood\Models\Bread;
 use Brood\Models\Order;
 use Illuminate\Http\Request;
+use Spatie\GoogleCalendar\Event;
 
 class MailController extends Controller
 {
@@ -28,16 +29,38 @@ class MailController extends Controller
   
         $breads = Bread::with('users')->get();
         
+        // Get email for next cyclist from google calendar and User model
+        $events = Event::get();
+        $first_event = $events->first();
+        $first_event_name = $first_event->name;
+        $next_cyclist_email = User::select('email')->where('name', $first_event_name)->first();
+        
+        if ($next_cyclist_email) {
+            $next_cyclist_email = $next_cyclist_email->email;
+        } else {
+            $next_cyclist_email = 'vokolent@gmail.com';
+        }
+
+        
         $data = [
             'from' => $admin->email,
             'name' => $admin->name,
+            'to' => 'foo@mail',
+            'cc_1' => 'bar@mail',
+            'cc_2' => 'foo_bar@mail',
+            'cc_3' => 'bar_foo@mail',
+            'cyclist' => $next_cyclist_email,
             'breads' => $breads,
             ];
 
 
         Mail::send('admin.email.order', $data, function($mail) use ($data) {
             $mail->from($data['from']);
-            $mail->to('test@mail.com');
+            $mail->to($data['to']);
+            $mail->cc($data['cc_1']);
+            $mail->cc($data['cc_2']);
+            $mail->cc($data['cc_3']);
+            $mail->cc($data['cyclist']);
             
             $mail->subject('bestelling Iewan');
         });
@@ -70,6 +93,7 @@ class MailController extends Controller
         return Redirect::back()->with('info_success', 'De bestellingsmail is succesvol verstuurd.');
     }
 
+    // Sends mail with the month bill for each user.
     public function mailUserBills(Request $request)
     {
         $admin = Auth::user();
@@ -87,9 +111,8 @@ class MailController extends Controller
             $users = User::all();
         }
 
-        foreach ($users as $user) {
-            // check if a specific month/year is selected and if not send bills of previous month. 
-            if (!$request->input('month') && !$request->input('year')) {
+        // check if a specific month/year is selected and if not send bills of previous month. 
+        if (!$request->input('month') && !$request->input('year')) {
                 $year = date('Y');
                 $month = date('m') > 1 ? date('m') - 1 : '12';
             } else {
@@ -97,24 +120,38 @@ class MailController extends Controller
                 $month =  $request->input('month');
             }
 
+        foreach ($users as $user) { 
+
             $bills = $user->getMonthBill($month, $year);
 
             $data = [
                 'adminEmail' => $admin->email,
                 'userEmail' => $user->email,
+                'userName' => $user->name,
+                'financial_admin' => 'vokolent@gmail.com',
                 'bills' => $bills,
                 'year' => $year,
                 'month' => $month,
             ];
 
+            
             Mail::send('admin.email.userbills', $data, function($mail) use ($data) {
                 $mail->from($data['adminEmail']);
                 $mail->to($data['userEmail']);
+                $mail->cc($data['financial_admin']);
                 
                 $mail->subject('maandrekening');
             });
+
+            
+            unset($data);
+            unset($bills);
+
         }
+
 
         return Redirect::back()->with('info_success', 'De maandrekening(en) is/zijn verstuurd.');
     }
+
+    
 }

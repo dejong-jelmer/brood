@@ -62,7 +62,7 @@
 
             <!-- change password -->
             <div class="form-group">
-                <button id="togglePassword" class="btn btn-lg btn-info btn-block" role="button"><span class="glyphicons glyphicon-lock"></span> Wachtwoord</button>       
+                <button id="togglePassword" class="btn btn-lg btn-info btn-block" role="button"><span class="glyphicon glyphicon-lock"></span> Wachtwoord</button>       
             </div>
             <div id="password" class="{{ $errors->has('current_password')||$errors->has('password')||$errors->has('password_confirmation') ? '' : 'collapse' }}">
                 <form action="{{ route('user.profile.wachtwoord') }}" method="post" role="form" class="form-vertical">
@@ -95,7 +95,6 @@
                 </form>
                 <hr>              
             </div>
-
         </div>
     </div>
 </div>

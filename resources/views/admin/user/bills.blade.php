@@ -15,7 +15,7 @@
         <div class="col-xs-10 col-md-6">
             <div class="form-group" id="sendField">
                 <label for="send" class="control-label">Maandrekeningen van {{ Helper::monthNumberToMonthName((date('m')>1 ? date('m')-1:'12')) }} naar alle bewoners versturen:</label>
-                <a href="{{ route('admin.email.userbills')  }}" name="send" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-send"></span> Versturen</a>
+                <a href="{{ route('admin.email.userbills', 'admin.email.userbillsoverfew')  }}" name="send" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-send"></span> Versturen</a>
             <hr>
             </div>
         </div>
@@ -79,6 +79,10 @@
                         <option value="2019">2019</option>
                         <option value="2020">2020</option>
                         <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
                     </select>
                 </div>
             </div>

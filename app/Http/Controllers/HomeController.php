@@ -7,6 +7,8 @@ use Redirect;
 use Brood\Models\User;
 use Brood\Models\Order;
 use Illuminate\Http\Request;
+use Spatie\GoogleCalendar\Event;
+
 
 class HomeController extends Controller
 {
@@ -17,15 +19,18 @@ class HomeController extends Controller
             
             $mostRecentOrder = Order::orderBy('updated_at', 'desc')->where('send', true)->first();
             
-            if ($orders = Auth::user()->unsendOrders()) {
-                
+            $orders = Auth::user()->unsendOrders();
+            
+            $events = Event::get(); 
+            $firstEvent = $events->first();    
                 
 
                 return view('home')->with([
                     'orders' => $orders,
                     'mostRecentOrder' => $mostRecentOrder,
+                    'firstEvent' => $firstEvent,
                     ]);
-            }
+            
 
         }
 

@@ -69,24 +69,23 @@ class Helper
            
         if ($date_day_of_the_week <= 3) {
             if ( $date_day_of_the_week > 5 || $date_day_of_the_week <= 1 ) {
-                $next_delivery_day = "vrijdag";
+                $next_delivery_day = "vrijdag.";
             } else { 
-                $next_delivery_day = "dinsdag"; 
+                $next_delivery_day = "dinsdag."; 
             }
             
         } elseif ($date_day_of_the_week > 3) {
             if ($current_day_of_the_week >= 1 && $current_day_of_the_week < 4) {
                 
-                $next_delivery_day = 'vrijdag';
+                $next_delivery_day = 'vrijdag.';
              
-            } else { $next_delivery_day = 'dinsdag'; }
+            } else { $next_delivery_day = 'dinsdag.'; }
         }
         
         return $next_delivery_day;
        
     }
-    
 
-        
+           
 
 }

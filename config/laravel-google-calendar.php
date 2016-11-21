@@ -10,6 +10,6 @@ return [
     /**
      *  The id of the Google Calendar that will be used by default.
      */
-    'calendar_id' => '',
+    'calendar_id' => 'a773o6k2vnimjl81lsjme78isg@group.calendar.google.com',
     
 ];

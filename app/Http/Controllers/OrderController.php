@@ -31,7 +31,7 @@ class OrderController extends Controller
         $user = Auth::user();
 
         if($user->isDeactivated()) {
-            return Redirect::route('home')->with('info_error', 'Je account is gedeactiveerd, je kunt geen bestellingen meer plaatsen.');
+            return Redirect::route('home')->with('info_error', 'Je account is gedeactiveerd, je kunt geen bestellingen (meer) plaatsen.');
         }
 
         $breads =  array($request->input('bread'));
@@ -126,6 +126,7 @@ class OrderController extends Controller
             }
 
         }
+        
         if(empty($info) && empty($response)) {
             $info = 'info_error';
             $response = 'Oeps, er is iets misgegaan.'; 

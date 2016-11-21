@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <!-- Costum CCS stylesheet -->
     <link rel="stylesheet" href="{{ URL::asset('css/styles.css') }}">
+    <!-- switch button css-->
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/switch.css') }}">
     <!-- Latest compiled and minified JavaScript - JQuery -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript - Bootstrap -->

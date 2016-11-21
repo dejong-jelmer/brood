@@ -99,8 +99,23 @@ Route::get('/admin/rekeningen', [
 Route::get('/broodrooster', [
     'uses' => '\Brood\Http\Controllers\BroodroosterController@getBroodrooster',
     'as' => 'user.broodrooster',
+]);
+Route::post('/broodrooster', [
+    'uses' => '\Brood\Http\Controllers\BroodroosterController@postSetCycleDays',
+    'as' => 'user.broodrooster.cyclist',
     'middleware' => ['auth'],
 ]);
+Route::post('/broodrooster/ruilen', [
+    'uses' => '\Brood\Http\Controllers\BroodroosterController@postSwapDates',
+    'as' => 'user.broodrooster.swap',
+    'middleware' => ['auth'],
+]);
+Route::post('/broodrooster/opgeven', [
+    'uses' => '\Brood\Http\Controllers\BroodroosterController@postFillDates',
+    'as' => 'user.broodrooster.fill',
+    'middleware' => ['auth'],
+]);
+
 
 // Reset routes
 Route::get('/password/email', [
@@ -139,12 +154,24 @@ Route::post('/aanpassen/wachtwoord', [
     'middleware' => ['auth'],
 ]);
 
+
 // Administrator routes
 Route::get('admin', [
     'uses' => '\Brood\Http\Controllers\AdminController@getAdmin',
     'as' => 'admin.index',
     'middleware' => ['auth'],
 ]);
+Route::get('admin/broodrooster', [
+    'uses' => '\Brood\Http\Controllers\AdminController@getAdminBroodrooster',
+    'as' => 'admin.broodrooster.index',
+    'middleware' => ['auth'],
+]);
+Route::post('admin/broodrooster', [
+    'uses' => '\Brood\Http\Controllers\AdminController@postAdminBroodrooster',
+    'as' => 'admin.broodrooster.index',
+    'middleware' => ['auth'],
+]);
+
 
 // Mail routes
 Route::get('admin/verstuurbestelling', [
@@ -157,6 +184,10 @@ Route::get('/admin/rekeningen/versturen', [
     'as' => 'admin.email.userbills',
     'middleware' => ['auth'],
 ]);
+
+
+
+
 
 // Breadlist routes
 Route::get('admin/broodlijst', [
