@@ -18,8 +18,7 @@ class Role extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 
-        'admin',
+        'roles', 
     ];
 
     // belongs to Users -> relation
