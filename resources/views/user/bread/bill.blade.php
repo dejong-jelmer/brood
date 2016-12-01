@@ -5,27 +5,32 @@
 <div class="row">
     <div class="col-xs-offset-1 col-md-offset-4">
         <div class="col-xs-10 col-md-6">
-        <h2>Maandrekeningen</h2>
-        <hr>
+            <h2>Maandrekeningen</h2>
+            <hr>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-offset-2 col-md-offset-4">
+        <div class="col-xs-10 col-md-6">
             <div class="form-group">
                 <label for="year" class="control-label">Kies een jaar:</label>
-                    <select id="year" name="year" class="select-year form-control">
-                        <option value="" selected></option>                            
-                        <option value="2016">2016</option>
-                        <option value="2017">2017</option>
-                        <option value="2018">2018</option>
-                        <option value="2019">2019</option>
-                        <option value="2020">2020</option>
-                        <option value="2021">2021</option>
-                    </select>
-                 </div>
+                <select id="year" name="year" class="select-year form-control">
+                    <option value="" selected></option>                            
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                </select>
             </div>
         </div>
     </div>
-
-    <div class="collapse" id="monthField">
+</div>
+<div class="collapse" id="monthField">
         <div class="row" >
-            <div class="col-xs-offset-1 col-md-offset-4">
+            <div class="col-xs-offset-2 col-md-offset-4">
                 <div class="col-xs-10 col-md-6">
                     <div class="form-group">
                         <label for="month" class="control-label">Kies een maand:</label>

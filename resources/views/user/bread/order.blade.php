@@ -11,7 +11,7 @@
 <form action="{{ route('user.bread.order') }}" method="post" role="form" class="form-vertical">
 	<div id="orderForm">
 		<div class="row">
-			<div class="col-xs-offset-1 col-md-offset-4">
+			<div class="col-xs-offset-2 col-md-offset-4">
 				<div class="col-xs-10 col-md-6">
 					@include('user.bread.partials.orderfield')
 					<hr>
@@ -23,7 +23,7 @@
 		<!-- This is where a copy of the initial orderField is displayed for more orders -->
 	</div>
 	<div class="row">
-		<div class="col-xs-offset-1 col-md-offset-4">
+		<div class="col-xs-offset-2 col-md-offset-4">
 			<div class="col-xs-10 col-md-6">
 				<div class="form-group">
 					<button type="submit" class="btn btn-lg btn-success btn-block">Bestel</button>

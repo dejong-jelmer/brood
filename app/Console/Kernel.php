@@ -38,7 +38,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('mail:cyclist')->weekly()->mondays()->at('18:00');
         $schedule->command('mail:cyclist')->weekly()->thursdays()->at('18:00');
 
-        $schedule->command('mail:cyclist')->everyMinute();
+        //$schedule->command('mail:cyclist')->everyMinute();
 
     }
 

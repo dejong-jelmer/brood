@@ -12,7 +12,7 @@
 </div>
 <div class="row">
     <div class="col-xs-offset-1 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="col-xs-11 col-sm-6 col-md-6 col-lg-6">
             
             <!-- change name -->
             <div class="form-group">

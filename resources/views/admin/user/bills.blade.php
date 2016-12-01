@@ -121,7 +121,7 @@
 
 <div class="row">
     <ul class="pager">
-        <li><a href="{{ URL::previous() }}">Terug</a></li>
+        <li><a href="{{ URL::route('admin.index') }}">Terug</a></li>
     </ul>
 </div>
 @stop

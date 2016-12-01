@@ -87,7 +87,7 @@ class AdminController extends Controller
         $event->save();
 
 
-        return Redirect::back()->with('info', 'gelukt');
+        return Redirect::back()->with('info_success', 'Dienst ingevoerd.');
 	}
 	
 	

@@ -27,17 +27,20 @@
         </form>
     @endif
     <div class="well">
-        <ul>
+        <p>
             @if (isset($mostRecentOrder))
-                <li>De laatste bestelling is <b>{{ $mostRecentOrder->updated_at->diffForHumans() }}</b> verstuurd naar bakker Arend.</li>
-                <li>Je volgende bestelling is voor aanstaande <b>{{ Helper::nextDeliveryDay($mostRecentOrder->updated_at) }}</b> </li>
+                De laatste bestelling verstuurd: <b>{{ $mostRecentOrder->updated_at->diffForHumans() }}</b>.<br>
+                Volgende bestelling voor: <b>{{ Helper::nextDeliveryDay($mostRecentOrder->updated_at) }}</b><br>
             @else
-                <li>Er zijn nog geen bestellingen aan Arend verstuurd.</li>
+                Er zijn nog geen bestellingen verstuurd.<br>
             @endif
 
-            @if (isset($firstEvent))
-                <li>De volgende fietser is <b>{{ $firstEvent->name }}</b></li>
+            @if (isset($firstEvent) && $firstEvent->name)
+                
+                De volgende fietser: <b>{{ $firstEvent->name }}</b>.<br>
+            @else
+                <span class="error"><b>Er is nog geen volgende fietsdienst!</b></span><br>
             @endif
-        </ul>
+        
     </div>
 @endif
