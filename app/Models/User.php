@@ -146,13 +146,13 @@ class User extends Authenticatable
     // get all first day Cyclist
     public function getAllFirstCyclist()
     {
-        return $this->roles()->wherePivot('role_id', '5')->wherePivot('active' , true)->get();
+        return $this->roles()->wherePivot('role_id', '2')->wherePivot('active' , true)->get();
     }
 
     // get all second day Cyclist
     public function getAllSecondCyclist()
     {
-        return $this->roles()->wherePivot('role_id', '6')->wherePivot('active' , true)->get();
+        return $this->roles()->wherePivot('role_id', '3')->wherePivot('active' , true)->get();
     }
 
   
@@ -185,18 +185,18 @@ class User extends Authenticatable
     {
         if(!$this->isFirstCyclist()) {
 
-            return $this->roles()->attach('5', ['active' => true ]);
+            return $this->roles()->attach('2', ['active' => true ]);
 
         } else {
 
-            return $this->roles()->wherePivot('role_id', '5')->first()->pivot->update(['active' => true]);
+            return $this->roles()->wherePivot('role_id', '2')->first()->pivot->update(['active' => true]);
         }
     }
     
     // unset the user_role of first_cyclist
     public function unsetUserAsFirstDayCyclist()
     {
-        return $this->roles()->detach('5');
+        return $this->roles()->detach('2');
     }
 
     // update the user_role to second_cyclist
@@ -204,18 +204,18 @@ class User extends Authenticatable
     {
         if(!$this->isSecondCyclist()) {
 
-            return $this->roles()->attach('6', ['active' => true ]);
+            return $this->roles()->attach('3', ['active' => true ]);
             
         } else {
 
-            return $this->roles()->wherePivot('role_id', '6')->first()->pivot->update(['active' => true]);
+            return $this->roles()->wherePivot('role_id', '3')->first()->pivot->update(['active' => true]);
         }
     }
 
     // unset the user_role of second_cyclist
     public function unsetUserAsSecondDayCyclist()
     {
-        return $this->roles()->detach('6');
+        return $this->roles()->detach('3');
     }
 
     

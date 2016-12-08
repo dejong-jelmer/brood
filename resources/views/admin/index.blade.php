@@ -44,7 +44,7 @@
 </div>
 
 <div class="row">
-    <div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+    <div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-3">
         <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
 			<ul class="nav-list list-inline">
 				<li><a href="{{ route('admin.user.bills') }}"><img src="{{ URL::asset('img/menu/check.jpg') }}"><span>Rekeningen</span></a></li>

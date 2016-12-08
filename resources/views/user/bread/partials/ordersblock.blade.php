@@ -39,7 +39,7 @@
                 
                 De volgende fietser: <b>{{ $firstEvent->name }}</b>.<br>
             @else
-                <span class="error"><b>Er is nog geen volgende fietsdienst!</b></span><br>
+                <span class="error"><b>Er is nog geen volgende fietser!</b></span><br>
             @endif
         
     </div>
