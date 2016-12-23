@@ -6,7 +6,7 @@
 Hallo Arend,
 <br>
 <br>
-De bestelling van Iewan:
+De bestelling van Iewan voor aanstaande {{ Helper::nextDeliveryDay($mostRecentOrder->updated_at) }}:
 
     @include('admin.partials.totalorders')
 

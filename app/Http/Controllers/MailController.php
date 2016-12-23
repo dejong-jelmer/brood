@@ -7,6 +7,7 @@ use Auth;
 use Mail;
 use Storage;
 use Redirect;
+use Helper;
 use Brood\Models\User;
 use Brood\Models\Bread;
 use Brood\Models\Order;
@@ -26,6 +27,8 @@ class MailController extends Controller
         if (!$admin->isAdmin()) {
             return Redirect::back()->with('info', 'Je hebt geen beheerdersrechten.');
         }
+        // Most recent send order.
+        $mostRecentOrder = Order::orderBy('updated_at', 'desc')->where('send', true)->first();
   
         $breads = Bread::with('users')->get();
         
@@ -45,12 +48,14 @@ class MailController extends Controller
         $data = [
             'from' => 'mail@brood.iewan.nl',
             'name' => $admin->name,
-            'to' => 'foo@mail',
-            'cc_1' => 'bar@mail',
-            'cc_2' => 'foo_bar@mail',
-            'cc_3' => 'bar_foo@mail',
+            'to' => 'bakkerarend@kpnplanet.nl',
+            'cc_1' => 'broodvanbakkerarend@gmail.com',
+            'cc_2' => 'theabouwhuis@kpnmail.nl',
+            'cc_3' => 'janvdveen54@gmail.com',
             'cyclist' => $next_cyclist_email,
             'breads' => $breads,
+            'mostRecentOrder' => $mostRecentOrder,
+            'nextDeliveryDay' => 'bestelling Iewan voor aanstaande ' . Helper::nextDeliveryDay($mostRecentOrder->updated_at),
             ];
 
 
@@ -62,7 +67,7 @@ class MailController extends Controller
             $mail->cc($data['cc_3']);
             $mail->cc($data['cyclist']);
             
-            $mail->subject('bestelling Iewan');
+            $mail->subject($data['nextDeliveryDay']);
         });
 
         $date = date("Y-m-d");
