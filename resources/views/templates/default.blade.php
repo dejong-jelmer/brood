@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <title>Broodbestelsite</title>
+    <title>Brood bestellen bij Arend voor Iewan en Eikpunt</title>
     
     <!-- Icon -->
     <link rel="icon" href="{{ URL::asset('img/icon.jpg') }}">

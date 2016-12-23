@@ -52,7 +52,7 @@ class mailCyclist extends Command
             $data = [
                 'to' => $user->email,
                 'name' => $user->name,
-                'from' => 'vokolent@gmail.com',
+                'from' => 'mail@brood.iewan.nl',
                 'subject' => 'Volgende fietsdienst',
             ];
 

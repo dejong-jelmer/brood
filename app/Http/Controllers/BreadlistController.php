@@ -54,15 +54,12 @@ class BreadlistController extends Controller
 
         } else {
             
-            $bread = Bread::findOrFail($id);
+            $bread = new Bread;
 
-            $bread->deleteBread();
-    
-            Bread::create([
-                    'bread' => $request->input('bread'),
-                    'price' => $request->input('price'),
-                    'deleted' => false,
-                ]);
+            $bread->bread = $request->input('bread');
+            $bread->price = $request->input('price');
+            $bread->deleted = false;
+            $bread->save();
 
             $info = 'info_success';
             $response =  'De broodlijst is aangepast.';

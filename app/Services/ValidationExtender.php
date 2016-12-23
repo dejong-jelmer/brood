@@ -10,6 +10,7 @@ class ValidationExtender extends IlluminateValidator
     private $_custom_messages = array(
         "alpha_dash_spaces" => ":attribute mag alleen letters en spacies bevatten.",
         "alpha_num_spaces" => ":attribute mag alleen letters, nummers en spacies bevatten.",
+        "alpha_num_spaces_spec_char" =>":attribute mag alleen letters, nummers, spacies, punten, komma's, vraag- en uitroeptekens bevatten.",
     );
 
 
@@ -49,5 +50,16 @@ class ValidationExtender extends IlluminateValidator
      */
     protected function validateAlphaNumSpaces( $attribute, $value ) {
         return (bool) preg_match( "/^[A-Za-z0-9\s]+$/", $value );
+    }
+
+    /**
+     * Allow only alphabets, numbers, spaces and special characters (.,?!) 
+     *
+     * @param string $attribute
+     * @param mixed $value
+     * @return bool
+     */
+    protected function validateAlphaNumSpacesSpecChar( $attribute, $value ) {
+        return (bool) preg_match( "/^[A-Za-z0-9\s.,!?()]+$/", $value );
     }
 }

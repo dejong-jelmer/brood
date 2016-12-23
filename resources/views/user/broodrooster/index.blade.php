@@ -13,7 +13,7 @@
 <!-- Google calendar iframe-->
 <div class="row">
     <div class="col-xs-offset-1 col-md-offset-1">
-        <div class="col-xs-11 col-md-11">
+        <div class="col-xs-11 col-md-11 responsive-iframe-container">
             <iframe src="https://calendar.google.com/calendar/embed?mode=AGENDA&amp;src=nmld72u27hg997vtok8p4lf0b0%40group.calendar.google.com&ctz=Europe/Amsterdam" style="border: 0" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
            
         </div>

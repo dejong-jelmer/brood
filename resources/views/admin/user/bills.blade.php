@@ -72,17 +72,10 @@
                 <div class="form-group">
                     <label for="year" class="control-label">Kies een jaar:</label>
                     <select id="year" name="year" class="select-year form-control">
-                        <option value="" selected></option>                            
-                        <option value="2016">2016</option>
-                        <option value="2017">2017</option>
-                        <option value="2018">2018</option>
-                        <option value="2019">2019</option>
-                        <option value="2020">2020</option>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
-                        <option value="2024">2024</option>
-                        <option value="2025">2025</option>
+                        <option value="" selected></option> 
+                        @for($year = '2017'; $year <= Carbon::now()->year; $year++)
+                            <option value="{{$year}}">{{$year}}</option>
+                        @endfor
                     </select>
                 </div>
             </div>
@@ -93,7 +86,7 @@
         <div class="col-xs-offset-1 col-md-offset-4">
             <div class="col-xs-10 col-md-6">
                 <div class="form-group">
-                    <label for="month" class="control-label">Keis een maand:</label>
+                    <label for="month" class="control-label">Kies een maand:</label>
                     <select id="month" name="month" class="select-month form-control">
                         <option value="" selected=""></option>
                         <option value="1">januari</option>

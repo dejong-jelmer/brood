@@ -43,7 +43,7 @@ class MailController extends Controller
 
         
         $data = [
-            'from' => $admin->email,
+            'from' => 'mail@brood.iewan.nl',
             'name' => $admin->name,
             'to' => 'foo@mail',
             'cc_1' => 'bar@mail',
@@ -125,7 +125,7 @@ class MailController extends Controller
             $bills = $user->getMonthBill($month, $year);
 
             $data = [
-                'adminEmail' => $admin->email,
+                'from' => 'mail@brood.iewan.nl',
                 'userEmail' => $user->email,
                 'userName' => $user->name,
                 'financial_admin' => 'vokolent@gmail.com',
@@ -136,7 +136,7 @@ class MailController extends Controller
 
             
             Mail::send('admin.email.userbills', $data, function($mail) use ($data) {
-                $mail->from($data['adminEmail']);
+                $mail->from($data['from']);
                 $mail->to($data['userEmail']);
                 $mail->cc($data['financial_admin']);
                 

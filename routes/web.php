@@ -171,7 +171,21 @@ Route::post('admin/broodrooster', [
     'as' => 'admin.broodrooster.index',
     'middleware' => ['auth'],
 ]);
-
+Route::post('admin/broodrooster/remove', [
+    'uses' => '\Brood\Http\Controllers\AdminController@postRemoveFromBroodrooster',
+    'as' => 'admin.broodrooster.remove',
+    'middleware' => ['auth'],
+]);
+Route::post('admin/mededeling', [
+    'uses' => '\Brood\Http\Controllers\MessageController@postNewMessage',
+    'as' => 'admin.message',
+    'middleware' => ['auth'],
+]);
+Route::get('admin/mededeling/verwijderen/{message}', [
+    'uses' => '\Brood\Http\Controllers\MessageController@removeMessage',
+    'as' => 'admin.message.remove',
+    'middleware' => ['auth'],
+]);
 
 // Mail routes
 Route::get('admin/verstuurbestelling', [
@@ -184,9 +198,6 @@ Route::get('/admin/rekeningen/versturen', [
     'as' => 'admin.email.userbills',
     'middleware' => ['auth'],
 ]);
-
-
-
 
 
 // Breadlist routes

@@ -185,7 +185,6 @@ jQuery(document).ready(function() {
 			$("#output_second_cyclist").html('<b>Afmelden</b>');
 		}
 	});
-	
 
 
 });

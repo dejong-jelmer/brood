@@ -4,8 +4,10 @@ namespace Brood\Http\Controllers;
 
 use Auth;
 use Redirect;
+use Carbon;
 use Brood\Models\User;
 use Brood\Models\Order;
+use Brood\Models\Message;
 use Illuminate\Http\Request;
 use Spatie\GoogleCalendar\Event;
 
@@ -17,18 +19,24 @@ class HomeController extends Controller
 
         if (Auth::user()) {
             
+            // Most recent send order.
             $mostRecentOrder = Order::orderBy('updated_at', 'desc')->where('send', true)->first();
             
+            // All unsend user orders.
             $orders = Auth::user()->unsendOrders();
             
+            // Next event
             $events = Event::get(); 
-            $firstEvent = $events->first();    
-                
+            $firstEvent = $events->first();  
+
+            // Messages
+            $messages = Message::where('expires', '>=', Carbon::today())->get();
 
                 return view('home')->with([
                     'orders' => $orders,
                     'mostRecentOrder' => $mostRecentOrder,
                     'firstEvent' => $firstEvent,
+                    'messages' => $messages,
                     ]);
             
 

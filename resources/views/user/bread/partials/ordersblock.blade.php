@@ -19,7 +19,7 @@
                 <h4>Je bestelling(en):</h4>
                 @foreach ($orders as $order)
                     <div class="col-xs-offset-1 col-md-offset-1">
-                        <p><button class="btn btn-danger btn-xs" name="id" value="{{ $order->pivot->id }}" data-toggle="tooltip" title="Bestelling verwijderen?"><span class="glyphicon glyphicon-erase" style="margin-top:3px"></span></button> {{ $order->pivot->amount }} x {{ $order->bread }} - {{ $order->pivot->created_at->diffForHumans() }}</p>
+                        <p><button class="btn btn-danger btn-xs" name="id" value="{{ $order->pivot->id }}" data-toggle="tooltip" title="Bestelling verwijderen?"><span class="glyphicon glyphicon-remove" style="margin-top:3px"></span></button> {{ $order->pivot->amount }} x {{ $order->bread }} - {{ $order->pivot->created_at->diffForHumans() }}</p>
                     </div>
                 @endforeach
             </div>
@@ -30,7 +30,7 @@
         <p>
             @if (isset($mostRecentOrder))
                 De laatste bestelling verstuurd: <b>{{ $mostRecentOrder->updated_at->diffForHumans() }}</b>.<br>
-                Volgende bestelling voor: <b>{{ Helper::nextDeliveryDay($mostRecentOrder->updated_at) }}</b><br>
+                Volgende bestelling voor: <b>{{ Helper::nextDeliveryDay($mostRecentOrder->updated_at) }}</b>.<br>
             @else
                 Er zijn nog geen bestellingen verstuurd.<br>
             @endif

@@ -10,6 +10,7 @@ use Redirect;
 use Brood\Models\User;
 use Brood\Models\Bread;
 use Brood\Models\Order;
+use Brood\Models\Message;
 use Illuminate\Http\Request;
 use Spatie\GoogleCalendar\Event;
 
@@ -24,13 +25,19 @@ class AdminController extends Controller
 			return Redirect::back()->with('info', 'Je hebt geen beheerdersrechten.');
 		}
 		
+		// Get user with orders
 		$users = User::with('breads')->get();
 
+		// Get al (by users) ordered breads 
 		$breads = Bread::with('users')->get();
+
+		// Messages
+        $messages = Message::where('expires', '>=', Carbon::today())->get();
 
 		return view('admin.index')->with([
 			'users' => $users,
 			'breads' => $breads,
+            'messages' => $messages,
 			]);
 	}
 
@@ -89,6 +96,44 @@ class AdminController extends Controller
 
         return Redirect::back()->with('info_success', 'Dienst ingevoerd.');
 	}
+
+	public function postRemoveFromBroodrooster(Request $request)
+	{
+		$admin = Auth::user();
+		
+		if (!$admin->isAdmin()) {
+			return Redirect::back()->with('info', 'Je hebt geen beheerdersrechten.');
+		}
+
+		// dd($request->input('id'));
+
+		if (!$request->input('id')) {
+
+			$info = 'info_error';
+			$response = 'Het is niet gelukt de dienst aan te passsen.';
+
+		} else {
+			$input = explode(':', $request->input('id'));
+				$event = Event::find($input[0]);
+			
+				if(!$input[1]) {
+					$event->name = '';
+					$event->save();
+					$info = 'info_success';
+					$response = 'Dienst leeg gemaakt.';
+				} else {
+					$event->delete();
+					$info = 'info_success';
+					$response = 'Dienst verwijderd.';
+				}
+			
+
+		} 
+
+        return Redirect::back()->with($info, $response);
+
+	}
+	
 	
 	
 	

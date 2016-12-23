@@ -109,6 +109,7 @@ return [
         'bread' => 'brood',
         'price' => 'prijs',
         'amount' => 'aantal',
+        'expires' => 'verloopt',
     ]
   
 ];
