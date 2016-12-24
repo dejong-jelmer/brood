@@ -35,8 +35,19 @@
 
 @section('content')
 <div class="row">
-	<div class="col-xs-offset-1 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
-        <div class="col-xs-11 col-sm-6 col-md-6 col-lg-6">
+    <div class="col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-0">
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+			<ul class="nav-list list-inline">
+				<li><a href="{{ route('admin.user.bills') }}"><img src="{{ URL::asset('img/menu/check.jpg') }}"><span>Rekeningen</span></a></li>
+				<li><a href="{{ route('admin.user.changeorder')  }}"><img src="{{ URL::asset('img/admin-menu/revise.jpg') }}"><span>Bestellingen herzien</span></a></li>
+				<li><a href="{{ route('admin.user.changerights') }}"><img src="{{ URL::asset('img/menu/admin.jpg') }}"><span>Rechten</span></a></li>
+				<li><a href="{{ route('admin.bread.updatebreadlist') }}"><img src="{{ URL::asset('img/admin-menu/breadlist.jpg') }}"><span>Broodlijst</span></a></li>
+				<li><a href="{{ route('admin.broodrooster.index') }}"><img src="{{ URL::asset('img/menu/toaster.jpg') }}"><span>Broodrooster</span></a></li>
+			</ul>          	  	
+        </div>
+    </div>
+	<div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
 			<div class="container-fluid">
 	        	@if(!Helper::newOrders())
 					<h3>Er zijn geen nieuwe bestellingen.</h3>
@@ -70,74 +81,53 @@
 						</div>
 					</div>
 				@endif
-			</div>
-		</div>
-	</div>
-</div>
+				<form action="{{ route('admin.message')}}" method="post" role="form" class="form-vertical">
+					<div class="form-group">
+						<label class="control-label">Mededelingen voor gebruikers op hoofdpagina.<small> Bijvoorbeeld de dagen dat Arend op vakantie is.</small></label>
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#message">Mededeling opstellen</button>
+					</div>
+					<input type="hidden" name="_token" value="{{ Session::token() }}">
+					<!-- Modal -->
+			        <div class="modal fade" id="message" role="dialog">
+			            <div class="modal-dialog">
 
-<div class="row">
-    <div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
-        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-			<ul class="nav-list list-inline">
-				<li><a href="{{ route('admin.user.bills') }}"><img src="{{ URL::asset('img/menu/check.jpg') }}"><span>Rekeningen</span></a></li>
-				<li><a href="{{ route('admin.user.changeorder')  }}"><img src="{{ URL::asset('img/admin-menu/revise.jpg') }}"><span>Bestellingen herzien</span></a></li>
-				<li><a href="{{ route('admin.user.changerights') }}"><img src="{{ URL::asset('img/menu/admin.jpg') }}"><span>Rechten</span></a></li>
-				<li><a href="{{ route('admin.bread.updatebreadlist') }}"><img src="{{ URL::asset('img/admin-menu/breadlist.jpg') }}"><span>Broodlijst</span></a></li>
-				<li><a href="{{ route('admin.broodrooster.index') }}"><img src="{{ URL::asset('img/menu/toaster.jpg') }}"><span>Broodrooster</span></a></li>
-			</ul>          	  	
-        </div>
-    </div>
-</div>
-<div class="row">
-		<div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
-		    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-			<form action="{{ route('admin.message')}}" method="post" role="form" class="form-vertical">
-				<div class="form-group">
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#message">Mededeling opstellen</button>
-					<label class="control-label">Mededelingen voor gebruikers op hoofdpagina.<small> Bijvoorbeeld de dagen dat Arend op vakantie is.</small></label>
-				</div>
-				<input type="hidden" name="_token" value="{{ Session::token() }}">
-				<!-- Modal -->
-		        <div class="modal fade" id="message" role="dialog">
-		            <div class="modal-dialog">
-
-		                <!-- Modal content-->
-		                <div class="modal-content">
-		                    <div class="modal-header">
-		                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-		                        <h4 class="modal-title">Mededeling opstellen</h4>
-		                    </div>
-		                    <div class="modal-body">
-		                    	<div class="form-group">
-		                            <label for="message" class="control-label">Mededeling</label>
-		                            <textarea class="form-control" rows="5" name="message"></textarea>
-		                        </div>
-		                    	<div class="form-group">
-			                        <label for="expires" class="control-label">Verloopt (datum tot wanneer de mededeling moet blijven staan)</label>
-		                            <input type="date" class="form-control" name="expires">
-		                        </div>
-		                        <div class="form-group">
-			                        <label for="color" class="control-label">Kleur</label>
-			                        
-		                            <select class="form-control" name="color">
-			                            <option></option>
-			                            <option value="info" id="info">Blauw</option>
-			                            <option value="success" id="success">Groen</option>succes
-			                            <option value="warning" id="warning">Geel</option>
-			                            <option value="danger" id="danger">Rood</option>
-		                            </select>
-		                        </div>
-		                    	<div class="form-group">
-		                            <button type="submit" class="btn btn-success">Plaatsen</button>
-		                        </div>
-		                    </div>
-		                    <div class="modal-footer">
-		                        <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
-		                    </div>
-		                </div>
-		            </div>
-		        </div>
-			</form>
+			                <!-- Modal content-->
+			                <div class="modal-content">
+			                    <div class="modal-header">
+			                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			                        <h4 class="modal-title">Mededeling opstellen</h4>
+			                    </div>
+			                    <div class="modal-body">
+			                    	<div class="form-group">
+			                            <label for="message" class="control-label">Mededeling</label>
+			                            <textarea class="form-control" rows="5" name="message"></textarea>
+			                        </div>
+			                    	<div class="form-group">
+				                        <label for="expires" class="control-label">Verloopt (datum tot wanneer de mededeling moet blijven staan)</label>
+			                            <input type="date" class="form-control" name="expires">
+			                        </div>
+			                        <div class="form-group">
+				                        <label for="color" class="control-label">Kleur</label>
+				                        
+			                            <select class="form-control" name="color">
+				                            <option></option>
+				                            <option value="info" id="info">Blauw</option>
+				                            <option value="success" id="success">Groen</option>succes
+				                            <option value="warning" id="warning">Geel</option>
+				                            <option value="danger" id="danger">Rood</option>
+			                            </select>
+			                        </div>
+			                    	<div class="form-group">
+			                            <button type="submit" class="btn btn-success">Plaatsen</button>
+			                        </div>
+			                    </div>
+			                    <div class="modal-footer">
+			                        <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+			                    </div>
+			                </div>
+			            </div>
+			        </div>
+				</form>
 
 			@if($messages->count())
 			
@@ -170,7 +160,7 @@
 						        	@foreach($messages as $message)
 						        		<div class="alert alert-{{$message->color ?: 'info'}} alert-dismissible">
 				                        {{ $message->message }}
-<a href="{{ route('admin.message.remove', ['message' => $message->id]) }}" class="close" >&times;</a> 
+										<a href="{{ route('admin.message.remove', ['message' => $message->id]) }}" class="close" >&times;</a> 
 					                    </div>
 						        	@endforeach
 						        @endif
@@ -183,10 +173,13 @@
 				  </div>
 			</div>
 		</div>
-</div>
-<div class="row">
-    <ul class="pager">
-        <li><a href="{{ URL::route('home') }}">Terug</a></li>
-    </ul>
+	</div>
+	<div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+		    <ul class="pager">
+		        <li><a href="{{ URL::route('home') }}">Terug</a></li>
+		    </ul>
+	    </div>
+    </div>
 </div>
 @stop

@@ -47,7 +47,7 @@ class AuthController extends Controller
 
         if (!Auth::attempt($request->only(['email', 'password']), $request->has('remember'))) {
 
-            return Redirect::route('home')->with('info_error', 'het is niet gelukt om in te loggen.');
+            return Redirect::route('home')->with('info_error', 'Het is niet gelukt om in te loggen.');
         }
         
         $user = Auth::user();

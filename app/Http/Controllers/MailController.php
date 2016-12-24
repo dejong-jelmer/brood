@@ -52,10 +52,11 @@ class MailController extends Controller
             'cc_1' => 'broodvanbakkerarend@gmail.com',
             'cc_2' => 'theabouwhuis@kpnmail.nl',
             'cc_3' => 'janvdveen54@gmail.com',
+            'cc_4' => $admin->email,
             'cyclist' => $next_cyclist_email,
             'breads' => $breads,
             'mostRecentOrder' => $mostRecentOrder,
-            'nextDeliveryDay' => 'bestelling Iewan voor aanstaande ' . Helper::nextDeliveryDay($mostRecentOrder->updated_at),
+            'nextDeliveryDay' => 'Bestelling Iewan voor aanstaande ' . Helper::nextDeliveryDay($mostRecentOrder->updated_at),
             ];
 
 
@@ -65,6 +66,7 @@ class MailController extends Controller
             $mail->cc($data['cc_1']);
             $mail->cc($data['cc_2']);
             $mail->cc($data['cc_3']);
+            $mail->cc($data['cc_4']);
             $mail->cc($data['cyclist']);
             
             $mail->subject($data['nextDeliveryDay']);

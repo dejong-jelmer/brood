@@ -2,12 +2,6 @@
    
 @section('content')
 
-<style type="text/css">
-	.hiddden {
-		display: none;
-	}
-</style>
-
 <form action="{{ route('user.bread.order') }}" method="post" role="form" class="form-vertical">
 	<div id="orderForm">
 		<div class="row">

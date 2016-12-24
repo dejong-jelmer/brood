@@ -1,13 +1,7 @@
 .navbar {
-  background-color: #D4EDF4;
-  border-color: #D4EDF4;
+  background-color: #D9EDF7;
+  border-color: #D9EDF7;
 
-}
-
-.well {
-  background-color:#FFF;
-  border-color: #888;
-  border-radius: 8px;
 }
 
 .transparent {
@@ -29,7 +23,7 @@
 }
 
 .navbar-toggle {
-  background-color: #D4EDF4;
+  background-color: #D9EDF7;
 }
 
 /* Menu displayed on homepage (after login) */
@@ -44,16 +38,24 @@
   
 }
 
-.nav-list > li > a:hover { text-decoration: none; }
+.nav-list > li > a > img {
+    width: 90px;
+    height: 90px;
+}
+
+.nav-list > li > a:hover { 
+  text-decoration: none;
+}
+
+
 .nav-list > li > a > span {
   display: block;
   text-align: center;
-  font-size: 0.8 em;
   font-weight: bold;
 }
 
 .vertical-align {
-	margin-top: 50px;
+  margin-top: 50px;
 }
 
 .pointer {
@@ -92,4 +94,42 @@ height: 100%;
 }
 .danger {
   background-color: #F2DEDE;
+}
+
+@media only screen and (max-width: 767px) {
+
+  body {
+    font-size: 8px;
+  }
+
+  .nav-list > li > a > img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .nav-list > li > a > span {
+    font-size: 0.9em;   
+  }
+
+}
+
+@media only screen and (max-width: 567px) {
+  body {
+    font-size: 6px;
+  }
+  .nav-list > li > a > img {
+    display: block;
+    margin: 0 auto;
+    width: 30px;
+    height: 30px;
+  }
+
+  .nav-list > li > a > span {
+    font-size: 0.8em;
+    font-weight: normal;
+    text-align: left;
+
+
+  }
+
 }
