@@ -34,10 +34,9 @@ class OrderController extends Controller
             return Redirect::route('home')->with('info_error', 'Je account is gedeactiveerd, je kunt geen bestellingen (meer) plaatsen.');
         }
 
-        $breads =  array($request->input('bread'));
-
+        
         $i = 0;
-        foreach ($breads as $id) {
+        foreach ($request->bread as $id) {
             
             // checks if inputfield 'brood' has value, if not redirect back.
             if(empty($request->bread[$i])) {
@@ -52,9 +51,8 @@ class OrderController extends Controller
             $amount = $request->amount[$i];
             
             $user->breadOrders($id, $amount);
-
+            unset($amount);
             $i++;
-
         }
 
         return Redirect::route('home')->with('info_success', 'Je bestelling is geplaatst.');
