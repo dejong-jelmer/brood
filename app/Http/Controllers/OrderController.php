@@ -6,6 +6,7 @@ use DB;
 use Auth;
 use Storage;
 use Redirect;
+use Brood\Models\User; 
 use Brood\Models\Bread; 
 use Brood\Models\Order; 
 use Illuminate\Http\Request;
@@ -61,22 +62,32 @@ class OrderController extends Controller
 
     public function getRecentOrders()
     {
+        // Last send total orders overview
         $last_send_order = Order::where('send', true)->max('updated_at');
         $d = strtotime($last_send_order); 
         $date = date("Y-m-d", $d);
-        $exists = Storage::disk('orders')->exists("order-$date.txt");
+        $file_exists = Storage::disk('orders')->exists("order-$date.txt");
 
-        if(!$last_send_order || !$exists) {
+        // Last user orders overview.
+        $user = Auth::user();
+        $user_orders = $user->getLastSendOrders($last_send_order);
+       
+        if(!$last_send_order || !$file_exists) {
 
-            return view('user.recentorders');
+            return view('user.recentorders')->with(['user_orders' => $user_orders,]);
         }
                 
         $file = Storage::disk('orders')->get("order-$date.txt");
-        $orders = explode(',', $file);
+        $total_orders = explode(',', $file);
+
         
-        return view('user.recentorders')->with(['orders' => $orders]);
+        return view('user.recentorders')->with([
+            'total_orders' => $total_orders,
+            'user_orders' => $user_orders,
+            ]);
 
     }
+    
     
     public function getChangeOrder()
     {

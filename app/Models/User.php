@@ -93,6 +93,12 @@ class User extends Authenticatable
         return (bool) $this->breads()->wherePivot('user_id', $user_id)->wherePivot('send', false)->count();
     }
 
+    public function getLastSendOrders($last_send_order)
+    {
+        return $this->breads()->wherePivot('updated_at', $last_send_order)->wherePivot('send', true)->orderBy('created_at', 'asc')->get();
+    }
+    
+
     // Boolean. Check if user has admin privileges
     public function isAdmin()
     {
