@@ -9,12 +9,18 @@ use Redirect;
 use Brood\Models\User;
 use Illuminate\Http\Request;
 
-class ResetController extends Controller
+class ProfileController extends Controller
 {
 	public function getReset()
 	{
 		$user = Auth::user();
-		return view('user.profile.index')->with('user', $user);
+
+		$roles = $user->roles()->get();
+
+		return view('user.profile.index')->with([
+			'user' => $user,
+			'roles' => $roles,
+			]);
 	}
 
 	public function postResetUsername(Request $request)
@@ -29,7 +35,7 @@ class ResetController extends Controller
 
 		$user = Auth::user();
 
-		return Redirect::route('home')->with('info_success', "Je naam is aangepast naar $user->name");
+		return Redirect::back()->with('info_success', "Je naam is aangepast naar $user->name");
 		
 	}
 
@@ -46,7 +52,7 @@ class ResetController extends Controller
 
 		$user = Auth::user();
 
-		return Redirect::route('home')->with('info_success', "Je e-mailadres is aangepast naar $user->email");
+		return Redirect::back()->with('info_success', "Je e-mailadres is aangepast naar $user->email");
 	}
 
 
@@ -79,5 +85,38 @@ class ResetController extends Controller
         return Redirect::route('home')->with('info_success', 'Je wachtwoord is aangepast.');
 	}
 
+	public function postChangeReminderMail()
+	{
+		$user = Auth::user();
+		$user->setReminderMailStatus();
+
+        return Redirect::back()->with('info_success', 'Je herinneringsmails zijn aangepast.');
+
+	}
+
+	public function postWoonproject(Request $request)
+	{
+		
+		$this->validate($request, [
+				'role' => 'required|boolean'
+			]);
+		
+		$user =  Auth::user();
+		$success = $user->setWoonproject($request->input('role'));
+
+		if (!$success) {
+			$info = 'info_error';
+			$response = 'Je woonproject is al opgeven en kan niet aangepast worden.';
+		} else {
+			$info = 'info_success';
+			$response = 'Je woonproject is aangepast.';
+		}
+
+        
+        return Redirect::back()->with($info, $response);
+
+
+	}
+	
 
 }

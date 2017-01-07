@@ -39,24 +39,31 @@ class mailReminder extends Command
      */
     public function handle()
     {
-        $users = User::select('email', 'name')->get();
-
-        foreach ($users as $user) {
+        //$users = User::with('roles')->select('email', 'name')->get();
             
-            $data = [
-                'to' => $user->email,
-                'name' => $user->name,
-                'from' => 'mail@brood.iewan.nl',
-                'subject' => 'broodbestel reminder',
-            ];
+        $users = User::with('roles')->get();
+        
+        foreach ($users as $user) {
 
-            Mail::send('user.email.reminder', $data, function($mail) use ($data) {
-                $mail->to($data['to']);
-                $mail->from($data['from']);
-                $mail->subject($data['subject']);
+            foreach($user->roles as $role) {
 
-            });
+                if($role->role == "reminder_mail" && $role->pivot->active) {
+                   
+                    $data = [
+                        'to' => $user->email,
+                        'name' => $user->name,
+                        'from' => 'mail@brood.iewan.nl',
+                        'subject' => 'broodbestel reminder',
+                    ];
 
+                    Mail::send('user.email.reminder', $data, function($mail) use ($data) {
+                        $mail->to($data['to']);
+                        $mail->from($data['from']);
+                        $mail->subject($data['subject']);
+
+                    });
+                } 
+            }   
         }
     }
 }

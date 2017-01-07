@@ -152,13 +152,13 @@ class User extends Authenticatable
     // get all first day Cyclist
     public function getAllFirstCyclist()
     {
-        return $this->roles()->wherePivot('role_id', '2')->wherePivot('active' , true)->get();
+        return $this->roles()->wherePivot('role_id', '2')->wherePivot('active', true)->get();
     }
 
     // get all second day Cyclist
     public function getAllSecondCyclist()
     {
-        return $this->roles()->wherePivot('role_id', '3')->wherePivot('active' , true)->get();
+        return $this->roles()->wherePivot('role_id', '3')->wherePivot('active', true)->get();
     }
 
   
@@ -223,6 +223,71 @@ class User extends Authenticatable
     {
         return $this->roles()->detach('3');
     }
+
+
+    // Remindermail
+    public function getReminderMailStatus()
+    {
+        return $this->roles()->wherePivot('role_id', '4')->wherePivot('active', true)->get();
+    }
+
+    public function hasReminderMail()
+    {
+        return (bool) $this->roles()->wherePivot('role_id', '4')->count();
+    } 
+        
+
+    public function setReminderMailStatus()
+    {
+        if(!$this->hasReminderMail()) {
+
+            return $this->roles()->attach('4', ['active' => true ]);
+        
+        } elseif ($this->roles()->wherePivot('role_id', '4')->wherePivot('active', true)->count()) {
+
+            return $this->roles()->wherePivot('role_id', '4')->first()->pivot->update(['active' => false]);
+            
+        } else {
+
+            return $this->roles()->wherePivot('role_id', '4')->first()->pivot->update(['active' => true]);                
+        }
+    }
+
+    // Housing project
+    public function hasWoonprojectSet()
+    {
+        if ($this->roles()->wherePivot('role_id', '5')->count()) {
+            return true;
+        } elseif ($this->roles()->wherePivot('role_id', '6')->count()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+
+    public function setWoonproject($project)
+    {
+        
+        if(!$this->hasWoonprojectSet()) {
+        
+            if(!$project) {
+
+                $this->roles()->attach('5', ['active' => true]);
+                return true;
+
+            } else {
+
+                $this->roles()->attach('6', ['active' => true]);
+                return true;
+            
+            }
+        } else {
+            return false;
+        }
+    }
+    
+    
 
     
     

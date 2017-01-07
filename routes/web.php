@@ -117,7 +117,7 @@ Route::post('/broodrooster/opgeven', [
 ]);
 
 
-// Reset routes
+// profile routes
 Route::get('/password/email', [
     'uses' => '\Brood\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm',
     'as' => 'auth.password.email',
@@ -133,27 +133,36 @@ Route::post('/password/reset/{token?}', [
     'uses' => '\Brood\Http\Controllers\Auth\ResetPasswordController@reset',
     'as' => 'auth.password.reset',
 ]);
-Route::get('/aanpassen', [
-    'uses' => '\Brood\Http\Controllers\ResetController@getReset',
+Route::get('/profiel', [
+    'uses' => '\Brood\Http\Controllers\ProfileController@getReset',
     'as' => 'user.profile.index',
     'middleware' => ['auth'],
 ]);
-Route::post('/aanpassen/naam', [
-    'uses' => '\Brood\Http\Controllers\ResetController@postResetUsername',
+Route::post('/profiel/naam', [
+    'uses' => '\Brood\Http\Controllers\ProfileController@postResetUsername',
     'as' => 'user.profile.username',
     'middleware' => ['auth'],
 ]);
-Route::post('/aanpassen/email', [
-    'uses' => '\Brood\Http\Controllers\ResetController@postResetEmail',
+Route::post('/profiel/email', [
+    'uses' => '\Brood\Http\Controllers\ProfileController@postResetEmail',
     'as' => 'user.profile.email',
     'middleware' => ['auth'],
 ]);
-Route::post('/aanpassen/wachtwoord', [
-    'uses' => '\Brood\Http\Controllers\ResetController@postResetPassword',
+Route::post('/profiel/wachtwoord', [
+    'uses' => '\Brood\Http\Controllers\ProfileController@postResetPassword',
     'as' => 'user.profile.wachtwoord',
     'middleware' => ['auth'],
 ]);
-
+Route::post('/profiel/herringeringsmail', [
+    'uses' => '\Brood\Http\Controllers\ProfileController@postChangeReminderMail',
+    'as' => 'user.profile.remindermail',
+    'middleware' => ['auth'],
+]);
+Route::post('/profiel/woonproject', [
+    'uses' => '\Brood\Http\Controllers\ProfileController@postWoonproject',
+    'as' => 'user.profile.woonproject',
+    'middleware' => ['auth'],
+]);
 
 // Administrator routes
 Route::get('admin', [
@@ -227,6 +236,7 @@ Route::post('/admin/rechten/gebruikersrechten', [
     'as' => 'admin.user.userrights',
     'middleware' => ['auth'],
 ]);
+
 
 // Search routes
 Route::get('/admin/bestellingen/zoeken', [

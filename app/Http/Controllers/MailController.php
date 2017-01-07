@@ -160,5 +160,7 @@ class MailController extends Controller
         return Redirect::back()->with('info_success', 'De maandrekening(en) is/zijn verstuurd.');
     }
 
+      
+
     
 }

@@ -46,9 +46,9 @@
 			</ul>          	  	
         </div>
     </div>
-	<div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
-        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
-			<div class="container-fluid">
+	<div class="col-xs-offset-2 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
+        <div class="col-xs-10 col-sm-6 col-md-6 col-lg-6">
+			
 	        	@if(!Helper::newOrders())
 					<h3>Er zijn geen nieuwe bestellingen.</h3>
 					<label for="send" class="control-label">Doorgeven aan Arend.</label>
@@ -81,10 +81,13 @@
 						</div>
 					</div>
 				@endif
+				<hr>
 				<form action="{{ route('admin.message')}}" method="post" role="form" class="form-vertical">
 					<div class="form-group">
 						<label class="control-label">Mededelingen voor gebruikers op hoofdpagina.<small> Bijvoorbeeld de dagen dat Arend op vakantie is.</small></label>
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#message">Mededeling opstellen</button>
+					</div>
+					<div class="form-group">						
+						<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#message">Mededeling opstellen</button>
 					</div>
 					<input type="hidden" name="_token" value="{{ Session::token() }}">
 					<!-- Modal -->
@@ -130,10 +133,10 @@
 				</form>
 
 			@if($messages->count())
-			
+				
 
 				<div class="form-group">
-					<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#removeMessage">Mededelingen verwijderen</button>
+					<button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#removeMessage">Mededelingen verwijderen</button>
 				</div>
 			<input type="hidden" name="_token" value="{{ Session::token() }}">
 			@endif
