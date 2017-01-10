@@ -77,7 +77,9 @@ class MailController extends Controller
         foreach ($breads as $bread) {
             
             foreach($bread->users as $user){
-                $amountSum[] = $user->pivot->amount;
+                if(!$user->pivot->send) {
+                    $amountSum[] = $user->pivot->amount;
+                }
             }
 
             if(isset($amountSum)) {
