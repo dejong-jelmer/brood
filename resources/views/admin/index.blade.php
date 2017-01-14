@@ -46,8 +46,8 @@
 			</ul>          	  	
         </div>
     </div>
-	<div class="col-xs-offset-2 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
-        <div class="col-xs-10 col-sm-6 col-md-6 col-lg-6">
+	<div class="col-xs-offset-3 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
+            <div class="col-xs-9 col-sm-6 col-md-6 col-lg-8">
 			
 	        	@if(!Helper::newOrders())
 					<h3>Er zijn geen nieuwe bestellingen.</h3>
