@@ -2,7 +2,6 @@
 
 namespace Brood\Http\Controllers;
 
-use DB;
 use Auth;
 use Redirect;
 use Brood\Models\User; 
@@ -21,14 +20,17 @@ class SearchController extends Controller
             return redirect()->route('home');
         }
 
-        $users = User::where(DB::raw('name', 'LIKE', "%{$query}%"))
+        $users = User::where('name', 'LIKE', "%{$query}%")
         ->orWhere('email', 'LIKE', "%{$query}%")->with('breads')
         ->get();
 
-               
+        $breads = Bread::where('bread', 'LIKE', "%{$query}%")
+        ->with('users')->get();
 
+        
         return view('admin.user.changeorder')->with([
             'users'=> $users,
+            'breads' => $breads,
             ]);
     }
     
